@@ -8,24 +8,23 @@ $db = 'scores';
 $conn = new mysqli($host, $user, $pass, $db); // Create connection
 if ($conn->connect_error) {     // Check connection
     die("Connection failed: " . $conn->connect_error);
-} 
-
-
-$score = mysqli_real_escape_string($conn, $_POST['score']);
-//$amount = mysqli_real_escape_string($conn, $_POST['amount']);
-//$times = mysqli_real_escape_string($conn, $_POST['times']);
+} else{
+    echo 'Connection Successful';
+}
+echo "<script>($score)</script>";
 
 echo "<script>console.log($score)</script>";
+$score = mysqli_real_escape_string($conn, $_POST['score']);
 
-if (strlen($times) > 200000) {  $times = "";    }
+echo "<script>console.log($score)</script>";
+$sql = "INSERT INTO vrungame VALUES ('score')";
 
-$sql = "INSERT INTO vrungame (score) VALUES ('$score');
 
-$tmp = '<script>''.$score.'</script>';
-echo $tmp;
+$tmp = "<script>".$score."</script>";
+    echo $tmp;
 
 if ($conn->query($sql) === TRUE) {
-    echo "Page saved!";
+    echo 'Page saved!';
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
