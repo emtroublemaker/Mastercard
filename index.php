@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -31,16 +32,28 @@
       </div>  
     <!--<form action="server.php" method="post">-->
       <form action="/savesettings.php" method="post">
-          <input type="hidden" id="myInput" name="country" value = "ABC" >
+          <input type="hidden" id="myInput" name="country" value = "$score" >
       </form>
     <script type="module" src="./game.js"> 
     </script>
 
       
     <script>
-      //For passing scores into php
-      
+      let scoreInput = document.getElementById("score");
+      let score;
 
+      function scoreboard(){
+        score = scoreInput.value;
+      if(localStorage.getItem("score")!=null){
+        alert("Not Done")
+      }
+      else{
+        if(scoreboard()){
+          localStorage.setIteam("score",$score);
+          document.getElementById("score-field").style.display="none";
+        }
+      }
+      }
     </script>
     
   </body>
