@@ -189,11 +189,11 @@ scene("game", (score) => {
 
 function pushToSever(base64){
     var form = new FormData();
-    console.log('Hello');
+    //console.log('Hello');
     form.append('score', localStorage.getItem("score"));
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
-        console.log("1");
+       // console.log("1");
         //var serverResponse = JSON.parse(this.response);
         //localStorage.setItem("score", serverResponse.score);
         //document.querySelector('.popup-step1').style.display = 'none';
