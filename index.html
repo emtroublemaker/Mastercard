@@ -9,12 +9,6 @@
     canvas{
       position: fixed;
       left: 50%;
- /*
-      max-width: 80%;
-      top: 50%;
-
-      For mobile res
-           */
       max-width: 90%;
       max-height: 99%;
       top: 50%;
@@ -31,16 +25,27 @@
       <canvas id="mycanvas"></canvas>
       </div>  
     <!--<form action="server.php" method="post">-->
-      <form action="/savesettings.php" method="post">
-          <input type="hidden" id="myInput" name="country" value = "$score" >
-      </form>
+      <button id="submit" name="submit_score" onclick="submit()">Submit score</button>
     <script type="module" src="./game.js"> 
     </script>
 
       
     <script>
       let scoreInput = document.getElementById("score");
-      let score;
+      
+      function submit(){
+        console.log("User score is: "+score);
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              console.log(this.responseText);
+            } 
+        };
+        var formData = new FormData();
+        formData.append('score', score);
+        xhttp.open("post", "savesettings.php"); 
+        xhttp.send(formData);  
+      }
 
       function scoreboard(){
         score = scoreInput.value;
