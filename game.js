@@ -187,26 +187,13 @@ scene("game", (score) => {
    
 });
 
-function pushToSever(base64){
-    var form = new FormData();
-    //console.log('Hello');
-    form.append('score', localStorage.getItem("score"));
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-       // console.log("1");
-        //var serverResponse = JSON.parse(this.response);
-        //localStorage.setItem("score", serverResponse.score);
-        //document.querySelector('.popup-step1').style.display = 'none';
-        //document.querySelector('.popup-step2').style.display = 'block';
-    }
-    xhr.open('POST', 'savesettings.php');
-    xhr.send(form);
-}
 
 
 
 scene("lose", (score) => {
-    pushToSever(score);
+   //pushToSever(score);
+   submit(score);
+
     add([
         sprite("EndPage"),
         origin("topleft"),
@@ -284,5 +271,23 @@ scene("main", () => {
   
 })
 
+
 go("main");
+//for passing score to php via index
+
+      
+      function submit(score){
+        console.log("User score is: ", score);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              console.log(this.responseText);
+            } 
+        };
+        var formData = new FormData();
+        formData.append('score', score);
+        xhttp.open("POST", "savesettings.php"); 
+        xhttp.send(formData);
+      }
+
 
