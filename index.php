@@ -9,12 +9,6 @@
     canvas{
       position: fixed;
       left: 50%;
- /*
-      max-width: 80%;
-      top: 50%;
-
-      For mobile res
-           */
       max-width: 90%;
       max-height: 99%;
       top: 50%;
@@ -25,37 +19,19 @@
       margin: 0 auto;
     }
   </style>
-      </head>
+      </head>   
       <body>
       <div id="content">
       <canvas id="mycanvas"></canvas>
       </div>  
-    <!--<form action="server.php" method="post">-->
-      <form action="/savesettings.php" method="post">
-          <input type="hidden" id="myInput" name="country" value = "$score" >
-      </form>
-    <script type="module" src="./game.js"> 
-    </script>
-
-      
-    <script>
-      let scoreInput = document.getElementById("score");
-      let score;
-
-      function scoreboard(){
-        score = scoreInput.value;
-      if(localStorage.getItem("score")!=null){
-        alert("Not Done")
-      }
-      else{
-        if(scoreboard()){
-          localStorage.setIteam("score",$score);
-          document.getElementById("score-field").style.display="none";
-        }
-      }
-      }
-    </script>
+    <form action="savesettings.php" method="POST">
     
+        <input type="hidden"  id = "submit" name="score" value=""></input>
+        
+    </form>
+    <!--<script type="module" src="./game.js">
+    //</script>-->
+    <script type="module" src="./game.js"></script>
   </body>
 
 
