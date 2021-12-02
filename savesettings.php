@@ -10,18 +10,17 @@ if ($conn->connect_error) {     // Check connection
     die("Connection failed: " . $conn->connect_error);
 } else{
     echo 'Connection Successful';
+    echo " ";
 }
-echo "<script>($score)</script>";
 
-echo "<script>console.log($score)</script>";
+$score= [];
 $score = mysqli_real_escape_string($conn, $_POST['score']);
-
 echo "<script>console.log($score)</script>";
-$sql = "INSERT INTO vrungame VALUES ('score')";
-
-
+$sql = "INSERT INTO vrungame VALUES ('$score')";
+echo $score;
 $tmp = "<script>".$score."</script>";
     echo $tmp;
+    
 
 if ($conn->query($sql) === TRUE) {
     echo 'Page saved!';
