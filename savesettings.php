@@ -15,12 +15,26 @@ if ($conn->connect_error) {     // Check connection
 
 $score= [];
 $score = mysqli_real_escape_string($conn, $_POST['score']);
-echo "<script>console.log($score)</script>";
+//echo "<script>console.log($score)</script>";
+
+//To store scores in the database
 $sql = "INSERT INTO vrungame VALUES ('$score')";
-echo $score;
-$tmp = "<script>".$score."</script>";
-    echo $tmp;
+//echo $score;
+
+//To fetch scores from the database
+$fetch = "SELECT * FROM vrungame ORDER BY score DESC LIMIT 3"; 
+$result = $conn->query($fetch);
+//$tmp = "<script>".$score."</script>";
+    //echo $tmp;
     
+if(mysqli_num_rows($result)){
+    while($row = mysqli_fetch_assoc($result)){
+        echo $row["score"].""."";
+    }
+}else{
+    echo "0 results";
+}
+
 
 if ($conn->query($sql) === TRUE) {
     echo 'Page saved!';
